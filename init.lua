@@ -89,7 +89,7 @@ P.S. You can delete this when you're done too. It's your config now! :)
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
+vim.g.lazyvim_check_order = false
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
@@ -252,6 +252,12 @@ require('lazy').setup({
   -- options to `gitsigns.nvim`.
   --
   -- See `:help gitsigns` to understand what the configuration keys do
+  {
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
+    opts = {},
+  },
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -982,7 +988,7 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
@@ -992,7 +998,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
@@ -1022,3 +1028,17 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+local keymapScript = loadfile '~/AppData/Local/nvim/lua/custom/config/keymaps.lua'
+if keymapScript ~= nil then
+  keymapScript()
+end
+
+local prefScript = loadfile '~/AppData/Local/nvim/lua/custom/config/options.lua'
+if prefScript ~= nil then
+  prefScript()
+end
+
+local prefCommandScript = loadfile '~/AppData/Local/nvim/lua/custom/config/commands.lua'
+if prefCommandScript ~= nil then
+  prefCommandScript()
+end
