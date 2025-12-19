@@ -12,7 +12,18 @@ return {
   {
     'andrewferrier/wrapping.nvim',
     config = function()
-      require('wrapping').setup()
+      require('wrapping').setup {}
     end,
+  },
+  {
+    'chentoast/marks.nvim',
+    event = 'VeryLazy',
+    opts = {},
+  },
+  {
+    'mfussenegger/nvim-dap',
+  },
+  {
+    'pacha/vem-tabline',
   },
 }
