@@ -1020,10 +1020,11 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-local keymapScript = loadfile '~/AppData/Local/nvim/lua/custom/config/keymaps.lua'
-if keymapScript ~= nil then
-  keymapScript()
-end
+
+-- local rustConfScript = loadfile '~/AppData/Local/nvim/lua/custom/plugins/rustPlugins.lua'
+-- if rustConfScript ~= nil then
+--   rustConfScript()
+-- end
 
 local prefScript = loadfile '~/AppData/Local/nvim/lua/custom/config/options.lua'
 if prefScript ~= nil then
@@ -1033,4 +1034,9 @@ end
 local prefCommandScript = loadfile '~/AppData/Local/nvim/lua/custom/config/commands.lua'
 if prefCommandScript ~= nil then
   prefCommandScript()
+end
+
+local keymapScript = loadfile '~/AppData/Local/nvim/lua/custom/config/keymaps.lua'
+if keymapScript ~= nil then
+  keymapScript()
 end
